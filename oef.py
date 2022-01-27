@@ -1,9 +1,12 @@
 import mod_progtalen as mp
 
 #toon programmeurs
-for x in mp.progtalen:
-    print(x)
 
+def toon_namen():
+    for x in mp.talen:
+        print(x)
+
+toon_namen()
 
 
 
@@ -12,13 +15,14 @@ for x in mp.progtalen:
 #print(mp.progtalen.get(naam)["Programmeertalen"])
 
 
+'''
 #filter op taal
 
 filter_dic ={}
 filter_rec ={}
 teller = 0
 zoekterm = input("welke taal")
-for x in mp.progtalen.values():
+for key in mp.progtalen.values():
    # print(x)
     if zoekterm is  x["programmeertalen"]:
         teller = teller + 1
@@ -28,18 +32,23 @@ for x in mp.progtalen.values():
        #print("taal niet gevonden")
 print(filter_dic.values())
 
-'''
 for x in mp.progtalen.keys():
     if mp.progtalen[x]["programmeertalen"]==taal:
         print(x)
     else:
         print("taal niet gevonden")
 '''
-taal=input("zoek op taal:")
-for n, pt in mp.progtalen.items():
-    print("\nProgrammeur:", n)
-    for x in pt:
-        print(pt["programmeertalen"])
+
+def zoek_taal():
+
+    taal=input("zoek op taal:")
+    for key, value in mp.talen.items():
+        print("\nProgrammeur:", key)
+        for x in value:
+            if x==taal:
+                print("kan programmeren in " +x)
+
+zoek_taal()
 
 
     #if taal in pt.items():
