@@ -43,9 +43,10 @@ def zoek_taal():
 
     taal=input("zoek op taal:")
     for key, value in mp.talen.items():
-        print("\nProgrammeur:", key)
+
         for x in value:
             if x==taal:
+                print("\nProgrammeur:", key)
                 print("kan programmeren in " +x)
 
 zoek_taal()
