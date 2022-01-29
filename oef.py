@@ -3,63 +3,110 @@ import mod_progtalen as mp
 #toon programmeurs
 
 def toon_namen():
-    for x in mp.talen:
-        print(x)
+    for x in mp.talenlijst:
+        print("naam="+x)
+        print(mp.talenlijst.values())
 
-toon_namen()
-
-
-
-#naam=input("geef naam in")
-
-#print(mp.progtalen.get(naam)["Programmeertalen"])
-
-
-'''
-#filter op taal
-
-filter_dic ={}
-filter_rec ={}
-teller = 0
-zoekterm = input("welke taal")
-for key in mp.progtalen.values():
-   # print(x)
-    if zoekterm is  x["programmeertalen"]:
-        teller = teller + 1
-        filter_rec.update({teller:{"Naam":x["Naam"],"taal":x["taal"]}})
-        filter_dic.update(filter_rec)
-    #else:
-       #print("taal niet gevonden")
-print(filter_dic.values())
-
-for x in mp.progtalen.keys():
-    if mp.progtalen[x]["programmeertalen"]==taal:
-        print(x)
-    else:
-        print("taal niet gevonden")
-'''
 
 def zoek_taal():
 
-    taal=input("zoek op taal:")
-    for key, value in mp.talen.items():
-
+    taal=input("geef programmeertaal in:")
+    for key, value in mp.talenlijst.items():
         for x in value:
             if x==taal:
                 print("\nProgrammeur:", key)
                 print("kan programmeren in " +x)
 
-zoek_taal()
+
+def del_programmeur():
+    naam=input("Welke programmeur wil je verwijderen?")
+    if naam in mp.talenlijst:
+        mp.talenlijst.pop(naam)
+    else:
+        print(naam+ "staat niet in de lijst")
 
 
-    #if taal in pt.items():
-        #print(taal+ " machtig")
+
+def add_taal():
+    talen=[]
+    addtalen=[]
+    taal=""
+    janee="j"
+    naam=input("bij wie wil je een prog taal toevoegen?")
+    if naam in mp.talenlijst:
+        talen=mp.talenlijst[naam]
+        talen_uitlees=str(talen)
+        print(naam+ " kan de talen: "+talen_uitlees)
+    else:
+        print(naam+" staat niet in de lijst")
+        naam = input("bij wie wil je een prog taal toevoegen?")
+    while not janee == "n":
+        taal=input("welke taal wil je toevoegen (of typ 'stop'):")
+        talen.append(taal)
+        janee=input("nog een taal invoeren?")
+    mp.talenlijst.update({naam : talen })
+    talen_uitlees=str(mp.talenlijst[naam])
+    print(naam + " kan de talen: " + talen_uitlees)
+
+def add_programmeur():
+    talen=[]
+    naam = str(input("Naam van toe te voegen programmeur:"))
+    naamlengte = len(naam)
+    asciilijst = []
+    for i in range(naamlengte):
+        asciilijst.append(ord(naam[i]))
+        for x in asciilijst:
+            if x < 65 or x > 90:
+                naamkanniet="j"
+    if naamkanniet=="j":
+        print("de naam bevat tekens, gelieve enkel karakters te gebruiken")
+        naam = str(input("Naam van toe te voegen programmeur:"))
 
 
-    #for key in pt:
-        #print(pt.get(key)[taal])
-        #if pt.items()==taal:
-            #print(taal+ " machtig")
-        #print(key + ':', pt[key])
-       # else:
-           # print(taal+ " niet machtig")
+    #addtaal = input("Programmeertalen die hij/zij beheerst:")
+    janee="j"
+    while not janee=="n":
+        taal=input("Welke taal beheerst de persoon:")
+        talen.append(taal)
+        janee=input("wil je nog een taal toevoegen?")
+    mp.talenlijst.update({naam : talen})
+
+
+
+
+
+
+
+
+
+
+#menu main programma
+def menu():
+    print("Maak je keuze:")
+    print("1. Toon programmeurs")
+    print("2. Toon Programmeurs die bepaalde taal spreken")
+    print("3. Verwijder programmeur uit lijst")
+    print("4. Voeg taal toe bij programmeur")
+    print("5. Voeg programmeur toe aan lijst")
+
+#Main programma
+while (True):
+    menu()
+    keuze = input("Geef uw keuze in of typ 'stop': ")
+    if keuze == "1":
+        toon_namen()
+    elif keuze == "2":
+        zoek_taal()
+    elif keuze == "3":
+        del_programmeur()
+    elif keuze == "4":
+        add_taal()
+    elif keuze == "5":
+        add_programmeur()
+    elif keuze == 'stop':
+        break
+
+
+
+
+
