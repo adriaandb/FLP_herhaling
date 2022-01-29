@@ -136,8 +136,7 @@ def schrijf_log(bericht):
     log.close()
 
 
-
-
+#-------------------------------
 
 
 def menu():
@@ -149,6 +148,10 @@ def menu():
     print("5. Zet wagen weer als beschikbaar")
     print("6. Voeg een wagen toe ")
     print("7. Verwijder een wagen")
+
+
+#-------------------------------
+#-------------------------------
 
 
 #hoofdprogramma
